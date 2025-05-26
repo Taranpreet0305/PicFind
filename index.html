@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="PicFind is a modern image search engine powered by Unsplash. Search and download high-quality images instantly.">
+    <meta name="keywords" content="image search, PicFind, Unsplash images, free images, download photos">
+    <meta name="author" content="PicFind Team">
+    <title>PicFind - Search and Download Free Images</title>
+    <link rel="stylesheet" href="Styles.css">
+    <link rel="canonical" href="https://yourdomain.com/">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <h1>PicFind</h1>
+            <form id="search-form" class="navbar-form hidden">
+                <input type="text" id="search-box" name="query" aria-label="Search images" placeholder="Enter text here to Search...">
+                <button type="submit">Search</button>
+            </form>
+        </nav>
+    </header>
+
+    <main>
+        <div id="search-wrapper">
+            <form id="search-form-center" class="center-form">
+                <input type="text" id="search-box-center" name="query" aria-label="Search images" placeholder="Enter text here to Search...">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        <section id="search-result" aria-live="polite"></section>
+        <button id="more">Show More...</button>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 PicFind Team. All rights reserved.</p>
+        <h4>Powered by <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Unsplash</a></h4>
+    </footer>
+
+    <script src="Script.js"></script>
+</body>
+</html>
