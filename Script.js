@@ -6,23 +6,19 @@ const centerInput = document.getElementById("search-box-center");
 const Result = document.getElementById("search-result");
 const More = document.getElementById("more");
 const searchWrapper = document.getElementById("search-wrapper");
-
 let keyword = "";
 let page = 1;
-
 const modal = document.createElement("div");
 modal.className = "modal";
 modal.innerHTML = `
-  <div class="modal-content">
-    <div class="modal-controls">
-      <button class="back-btn">⬅</button>
-      <a href="#" class="download-btn" target="_blank" title="Download">⬇</a>
-    </div>
-    <img src="" alt="Preview" class="modal-img">
-  </div>
-`;
+    <div class="modal-content">
+        <div class="modal-controls">
+            <button class="back-btn">⬅</button>
+            <a href="#" class="download-btn" target="_blank" title="Download">⬇</a>
+        </div>
+        <img src="" alt="Preview" class="modal-img">
+  </div>`;
 document.body.appendChild(modal);
-
 const modalImg = modal.querySelector(".modal-img");
 const modalDownload = modal.querySelector(".download-btn");
 const modalBack = modal.querySelector(".back-btn");
@@ -45,29 +41,22 @@ function toggleLoader(show) {
 async function search(inputSource) {
     keyword = inputSource.value.trim();
     if (!keyword) return;
-
-    // Transition UI
     centerForm.classList.add("hidden");
     searchWrapper.style.display = "none";
     navbarForm.classList.remove("hidden");
     navbarInput.value = keyword;
-
     toggleLoader(true);
     await new Promise(resolve => setTimeout(resolve, 2000));
-
     const url = `https://api.unsplash.com/search/photos?page=${page}&query=${keyword}&client_id=${accesskey}&per_page=30`;
     const response = await fetch(url);
     const data = await response.json();
     toggleLoader(false);
-
-    if (page === 1) Result.innerHTML = "";
-
+    if(page===1) Result.innerHTML = "";
     const results = data.results;
     results.forEach(result => {
         const image = document.createElement("img");
         image.src = result.urls.small;
         image.alt = result.alt_description || "Image";
-
         const link = document.createElement("a");
         link.href = result.links.html;
         link.target = "_blank";
@@ -81,10 +70,8 @@ async function search(inputSource) {
             modalImg.style.maxWidth = "90vw";
             modalDownload.href = result.links.download;
         });
-
         Result.appendChild(link);
     });
-
     More.style.display = "block";
 }
 
@@ -106,7 +93,8 @@ More.addEventListener("click", () => {
 });
 
 window.addEventListener("scroll", () => {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+    if(window.innerHeight+window.scrollY>=document.body.offsetHeight-100) 
+    {
         page++;
         search(navbarInput);
     }
